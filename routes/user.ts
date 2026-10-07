@@ -27,7 +27,7 @@ createUserRouter.post("/users", async (req: Request, res: Response) => {
         }
 
         const protectPassword = await generateHash(password);
-      
+
         const newUser = new User({
             email: email,
             name: name,
@@ -50,6 +50,7 @@ createUserRouter.post("/users", async (req: Request, res: Response) => {
         }
 
         console.log(err);
+        return res.status(500).json({error: err});
     }
 
 
