@@ -8,7 +8,7 @@ createUserRouter.post("/users", async (req: Request, res: Response) => {
 
     try {
 
-        const { name,email, password } = req.body;
+        const { name, email, password } = req.body;
 
         const newUser = new User({
             email: email,
@@ -21,8 +21,15 @@ createUserRouter.post("/users", async (req: Request, res: Response) => {
         return res.status(201).json({ message: newUser });
 
     } catch (err) {
-        console.log(err);
-        return res.status(400).json({error: err});
+
+
+        if (err.code === 11000) {
+
+            console.log(err);
+            return res.status(400).json({ error: "Email id already exists" });
+
+
+        }
     }
 
 
