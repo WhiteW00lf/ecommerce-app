@@ -9,7 +9,7 @@ const PORT=3000;
 
 app.use('/', router)
 router.get("/", (req: Request, res:Response) => {
-    return res.status(200).send({message:"Home page"});
+    return res.status(200).json({message:"Home page"});
 
 });
 
