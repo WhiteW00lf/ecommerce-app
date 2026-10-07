@@ -1,7 +1,4 @@
 import mongoose, { Schema, model } from 'mongoose';
-import connecToDB from '../initDB';
-
-connecToDB();
 
 const userSchema = new Schema({
     name: {
@@ -15,6 +12,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
         minLength: 8,
+        unique: true
     },
     password: {
         type: String,
