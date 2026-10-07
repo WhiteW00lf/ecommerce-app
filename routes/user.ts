@@ -1,6 +1,7 @@
 import express, { Router, type Request, type Response } from 'express';
 import User from '../models/User';
 import * as z from 'zod';
+import generateHash from '../hasher';
 
 const createUserRouter = Router();
 
@@ -19,23 +20,23 @@ createUserRouter.post("/users", async (req: Request, res: Response) => {
 
         });
 
-        const result =  CheckUser.safeParse(req.body);
+        const result = CheckUser.safeParse(req.body);
 
-        if(result.error){
-            return res.status(400).json({"error": result.error.issues.error});
+        if (result.error) {
+            return res.status(400).json({ "error": result.error.issues });
         }
-    
 
-
+        const protectPassword = await generateHash(password);
+      
         const newUser = new User({
             email: email,
             name: name,
-            password: password
+            password: protectPassword
         });
 
         await newUser.save();
 
-        return res.status(201).json({ message: newUser });
+        return res.status(201).json({ message: 'User created' });
 
     } catch (err) {
 
