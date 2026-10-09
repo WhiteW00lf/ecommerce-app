@@ -18,6 +18,7 @@ createUserRouter.post("/users", async (req: Request, res: Response) => {
             password: z.string().min(8)
 
 
+
         });
 
         const result = CheckUser.safeParse(req.body);
@@ -50,7 +51,7 @@ createUserRouter.post("/users", async (req: Request, res: Response) => {
         }
 
         console.log(err);
-        return res.status(500).json({error: err});
+        return res.status(500).json({ error: err });
     }
 
 
