@@ -37,7 +37,7 @@ loginRouter.post("/login", async (req: Request, res: Response) => {
                 return res.status(403).json({ "message": "Email or Password is incorrect" });
             } else {
 
-                const token = jsonwebtoken.sign({ userId: user._id, email: user.email },
+                const token = jsonwebtoken.sign({ userId: user._id, email: user.email, role: user.role },
                     TOKEN,
                     { expiresIn: '1h' });
                 res.cookie('token', token, {
