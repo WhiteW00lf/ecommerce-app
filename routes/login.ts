@@ -7,7 +7,11 @@ import jsonwebtoken from 'jsonwebtoken';
 
 
 const loginRouter = Router();
+
+if (!process.env.SECRET) throw new Error('SECRET env var not set');
 const TOKEN = process.env.SECRET;
+
+
 
 
 loginRouter.post("/login", async (req: Request, res: Response) => {
