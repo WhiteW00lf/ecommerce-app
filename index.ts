@@ -4,6 +4,7 @@ import connectToDB from './initDB.ts';
 import createUserRouter from './routes/user.ts';
 import loginRouter from './routes/login.ts';
 import AuthMiddleware from './middleware/auth.ts';
+import requireAdmin from './middleware/admin.ts';
 const app = express();
 
 const router = Router();
@@ -18,7 +19,10 @@ app.use('/', loginRouter);
 await connectToDB(); // Connect to DB
 router.get("/", AuthMiddleware, (req: Request, res: Response) => {
     return res.status(200).json({ message: "Home page" });
+});
 
+router.get("/admin", AuthMiddleware, requireAdmin, (req: Request, res: Response) => {
+    return res.status(200).json({ message: "Admin panel" });
 });
 
 
