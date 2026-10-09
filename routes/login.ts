@@ -20,6 +20,7 @@ loginRouter.post("/login", async (req: Request, res: Response) => {
         const CheckUser = z.object({
             email: z.email(),
             password: z.string().min(8)
+
         });
 
         const result = CheckUser.safeParse(req.body);
