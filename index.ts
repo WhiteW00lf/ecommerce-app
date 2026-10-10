@@ -6,6 +6,7 @@ import loginRouter from './routes/login.ts';
 import AuthMiddleware from './middleware/auth.ts';
 import requireAdmin from './middleware/admin.ts';
 import LogoutRouter from './routes/logout.ts';
+import createCategoryRouter from './routes/category.ts';
 const app = express();
 
 const router = Router();
@@ -17,6 +18,7 @@ app.use('/', router);
 app.use('/', createUserRouter);
 app.use('/', loginRouter);
 app.use('/', LogoutRouter);
+app.use('/', createCategoryRouter);
 
 await connectToDB(); // Connect to DB
 router.get("/", AuthMiddleware, (req: Request, res: Response) => {
