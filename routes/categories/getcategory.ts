@@ -1,8 +1,7 @@
 import { Router, type Request, type Response } from 'express';
 import Category from '../../models/Category';
-import { Route } from 'react-router';
 import AuthMiddleware from '../../middleware/auth';
-import requireAdmin from '../../middleware/auth';
+import requireAdmin from '../../middleware/admin';
 
 
 const getCategory = Router();
