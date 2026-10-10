@@ -6,9 +6,10 @@ const LogoutRouter = Router();
 LogoutRouter.post("/logout", (req: Request, res: Response) => {
 
     try {
-        res.clearCookie('token');
-        res.status(200).json({ "message": "Logged out successfully" });
-        return res.status(302).redirect("/");
+        res.clearCookie('token', { httpOnly: true, secure: false, sameSite: 'strict' });
+
+        return res.status(200).json({ "message": "Logged out successfully" });
+
     } catch (err) {
         console.log(err);
     }
