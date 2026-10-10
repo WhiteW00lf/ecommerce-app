@@ -5,6 +5,7 @@ import createUserRouter from './routes/user.ts';
 import loginRouter from './routes/login.ts';
 import AuthMiddleware from './middleware/auth.ts';
 import requireAdmin from './middleware/admin.ts';
+import LogoutRouter from './routes/logout.ts';
 const app = express();
 
 const router = Router();
@@ -15,6 +16,7 @@ app.use(cookieParser());
 app.use('/', router);
 app.use('/', createUserRouter);
 app.use('/', loginRouter);
+app.use('/', LogoutRouter);
 
 await connectToDB(); // Connect to DB
 router.get("/", AuthMiddleware, (req: Request, res: Response) => {
