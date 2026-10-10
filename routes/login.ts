@@ -39,7 +39,7 @@ loginRouter.post("/login", async (req: Request, res: Response) => {
 
             let isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
-                return res.status(403).json({ "message": "Email or Password is incorrect" });
+                return res.status(401).json({ "message": "Email or Password is incorrect" });
             } else {
 
                 const token = jsonwebtoken.sign({ userId: user._id, email: user.email, role: user.role },
