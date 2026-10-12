@@ -10,6 +10,10 @@ import createCategoryRouter from './routes/categories/category.ts';
 import getCategory from './routes/categories/getcategory.ts';
 import updateCategoryRouter from './routes/categories/updatecategory.ts';
 import deleteCategoryRouter from './routes/categories/deletecategory.ts';
+import createProductRouter from './routes/products/products.ts';
+import getProductsRouter from './routes/products/getproducts.ts';
+import updateProductRouter from './routes/products/updateproduct.ts';
+import deleteProductRouter from './routes/products/deleteproduct.ts';
 const app = express();
 
 const router = Router();
@@ -25,6 +29,10 @@ app.use('/', createCategoryRouter);
 app.use('/', getCategory);
 app.use('/', updateCategoryRouter);
 app.use('/', deleteCategoryRouter);
+app.use('/', createProductRouter);
+app.use('/', getProductsRouter);
+app.use('/', updateProductRouter);
+app.use('/', deleteProductRouter);
 
 await connectToDB(); // Connect to DB
 router.get("/", AuthMiddleware, (req: Request, res: Response) => {
