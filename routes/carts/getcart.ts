@@ -8,11 +8,8 @@ getCartRouter.get('/cart', AuthMiddleware, async (req: Request, res: Response) =
 
 
 try{
-    const getcart = await Cart.findOne({ user: req.user.userId });
-    if(!getcart) {
-        return res.status(404).json({ error: 'Cart not found' });
-    }
-    await getcart.populate('items.product','title price images stock isActive');
+    const getcart = await Cart.findOne({ user: req.user.userId })
+        .populate('items.product','title price images stock isActive');
 
     const items = (getcart?.items? getcart.items : [])
     .filter(item => item.product && item.product.isActive)
@@ -23,7 +20,7 @@ try{
     }));
     const cartTotal = items.reduce((total, item) => total + item.lineTotal, 0); 
 
-    return res.status(200).json({ ...getcart.toObject(), items, cartTotal });
+    return res.status(200).json({ items, cartTotal });
 } catch (error) {
     return res.status(500).json({ error: 'Internal server error', error: error.message });  
 }
