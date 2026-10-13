@@ -1,5 +1,6 @@
 import express, { Router, type Request, type Response } from 'express';
 import createCartRouter from './routes/carts/cart.ts';
+import getCartRouter from './routes/carts/getcart.ts';
 import cookieParser from 'cookie-parser';
 import connectToDB from './initDB.ts';
 import createUserRouter from './routes/user.ts';
@@ -35,6 +36,7 @@ app.use('/', getProductsRouter);
 app.use('/', updateProductRouter);
 app.use('/', deleteProductRouter);
 app.use('/', createCartRouter);
+app.use('/', getCartRouter);
 
 await connectToDB(); // Connect to DB
 router.get("/", AuthMiddleware, (req: Request, res: Response) => {
