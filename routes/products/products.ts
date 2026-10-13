@@ -10,8 +10,8 @@ const checkProduct = z.object({
     title: z.string().min(3),
     slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
     description: z.string().min(3),
-    price: z.number().min(0),
-    stock: z.number().min(0),
+    price: z.number().int().min(0),
+    stock: z.number().int().min(0),
     images: z.array(z.string().url()),
     category: z.string().refine((val) => /^[a-f\d]{24}$/i.test(val), {
         message: "Invalid ObjectId"
