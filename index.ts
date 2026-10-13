@@ -16,6 +16,7 @@ import createProductRouter from './routes/products/products.ts';
 import getProductsRouter from './routes/products/getproducts.ts';
 import updateProductRouter from './routes/products/updateproduct.ts';
 import deleteProductRouter from './routes/products/deleteproduct.ts';
+import updateCartRouter from './routes/carts/updatecart.ts'; 
 const app = express();
 
 const router = Router();
@@ -37,6 +38,7 @@ app.use('/', updateProductRouter);
 app.use('/', deleteProductRouter);
 app.use('/', createCartRouter);
 app.use('/', getCartRouter);
+app.use('/', updateCartRouter);
 
 await connectToDB(); // Connect to DB
 router.get("/", AuthMiddleware, (req: Request, res: Response) => {
