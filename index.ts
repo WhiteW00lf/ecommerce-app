@@ -2,6 +2,7 @@ import express, { Router, type Request, type Response } from 'express';
 import createCartRouter from './routes/carts/cart.ts';
 import getCartRouter from './routes/carts/getcart.ts';
 import deleteCartRouter from './routes/carts/deletecart.ts';
+import createOrderRouter from './routes/orders/orders.ts';
 import cookieParser from 'cookie-parser';
 import connectToDB from './initDB.ts';
 import createUserRouter from './routes/user.ts';
@@ -43,6 +44,7 @@ app.use('/', getCartRouter);
 app.use('/', updateCartRouter);
 app.use('/', deleteCartRouter);
 app.use('/', deleteOneCartRouter);
+app.use('/', createOrderRouter);
 
 await connectToDB(); // Connect to DB
 router.get("/", AuthMiddleware, (req: Request, res: Response) => {
