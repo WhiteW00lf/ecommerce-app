@@ -36,18 +36,5 @@ getOrderRouter.get('/orders',AuthMiddleware, async (req: Request, res: Response)
 
 
 });
-// router.get('/:id', async (req: Request, res: Response) => {
-//     const { id } = req.params;
-//     try {
-//         // Replace this with your actual order fetching logic
-//         const order = await getOrderById(id);
-//         if (!order) {
-//             return res.status(404).json({ message: 'Order not found' });
-//         }
-//         res.json(order);
-//     } catch (error) {
-//         res.status(500).json({ message: 'Internal server error' });
-//     }
-// });
 
 export default getOrderRouter;
